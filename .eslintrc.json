@@ -1,0 +1,87 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "semi": ["error"],
+        "quotes": ["error", "single"],
+        "indent": ["error", 2],
+        "space-before-blocks": ["error", "always"],
+        "no-multi-spaces": "error",
+        "no-trailing-spaces": "error",
+        "eol-last": ["error", "always"],
+        "no-multiple-empty-lines": ["error", {
+          "max": 1,
+          "maxEOF": 0 
+        }],
+        "object-curly-spacing": ["error", "always"],
+        "space-before-function-paren": ["error", {
+          "anonymous": "always",
+          "named": "never",
+          "asyncArrow": "always"
+        }],
+        "key-spacing": ["error", { 
+          "beforeColon": false, 
+          "afterColon": true 
+        }],
+        "@typescript-eslint/type-annotation-spacing": ["error", {
+          "before": false,
+          "after": true,
+          "overrides": {
+            "arrow": {
+              "before": true,
+              "after": true
+            }
+          }
+        }],
+        "@typescript-eslint/member-delimiter-style": "warn",
+        "@typescript-eslint/keyword-spacing": ["error", {
+          "after": true
+        }],
+        "@typescript-eslint/no-empty-function": "off"
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {
+        "no-multiple-empty-lines": ["error", {
+          "max": 1,
+          "maxEOF": 0 
+        }]
+      }
+    }
+  ]
+}
