@@ -1,0 +1,17 @@
+@media (min-width: 600px) {
+  mat-dialog-content {
+    min-width: 500px;
+  }
+}
+
+@media (max-width: 600px) {
+  mat-dialog-content {
+    min-width: 80vw;
+  }
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 22px;
+}

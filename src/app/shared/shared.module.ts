@@ -3,9 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from './modules/material/material.module';
+import { AddTaskButtonComponent } from './components/buttons/add-task-button/add-task-button.component';
+import { DialogModalComponent } from './components/modals/dialog-modal/dialog-modal.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    AddTaskButtonComponent,
+    DialogModalComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -16,7 +21,9 @@ import { MaterialModule } from './modules/material/material.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    AddTaskButtonComponent,
+    DialogModalComponent
   ]
 })
 export class SharedModule { }
