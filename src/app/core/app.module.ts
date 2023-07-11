@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { NavComponent } from './components/nav/nav.component';
 import { PendingTasksComponent } from './components/pages/tasks/pending-tasks/pending-tasks.component';
@@ -30,6 +31,7 @@ import { AddTaskModalComponent } from './components/modals/add-task-modal/add-ta
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     SharedModule
   ],
   providers: [],

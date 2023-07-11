@@ -1,3 +1,33 @@
 <p>tasks works!</p>
-<app-pending-tasks></app-pending-tasks>
-<app-completed-tasks></app-completed-tasks>
+{{ tasksData$ | async | json }}
+
+<div>
+  <mat-card class="task-card" *ngFor="let task of tasksData$ | async">
+    <div class="task-card-content">
+      <div>
+        <b>{{ task.title}}</b><br />
+        <small>{{ task.description }}</small>
+      </div>
+      <ng-container *ngIf="task.completed; else isNotCompleted">
+        <button type="button" color="primary" mat-icon-button (click)="deleteTask(task)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
+      <ng-template #isNotCompleted>
+        <div>
+          <button class="action-button" type="button" color="green" mat-icon-button (click)="completeTask(task)">
+            <mat-icon>done</mat-icon>
+          </button>
+        </div>
+        </ng-template>
+    </div>
+  </mat-card>
+</div>
+
+<app-pending-tasks
+  [pendingTasks]="pendingTasks"
+></app-pending-tasks>
+
+<app-completed-tasks
+  [completedTasks]="completedTasks"
+></app-completed-tasks>

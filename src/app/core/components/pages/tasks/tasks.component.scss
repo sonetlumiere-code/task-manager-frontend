@@ -1,0 +1,11 @@
+.task-card {
+  display: flex;
+  padding: 12px 20px;
+  margin-top: 5px;
+  color: #fff;
+}
+
+.task-card-content { 
+  display: flex;
+  justify-content: space-between;
+}

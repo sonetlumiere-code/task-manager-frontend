@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { APITaskService } from 'src/app/core/services/api-task.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 import { NewTaskInterface } from 'src/app/shared/types/task.interface';
 
 interface DialogData {
@@ -18,6 +20,8 @@ export class AddTaskModalComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private apiTaskService: APITaskService,
+    private sharedService: SharedService,
     private dialogRef: MatDialogRef<AddTaskModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
@@ -28,20 +32,30 @@ export class AddTaskModalComponent implements OnInit {
 
   initializeForm(): void {
     this.addTaskForm = this.fb.group({
-      name: ['', [Validators.required]],
-      description: [''],
+      title: ['', [Validators.required]],
+      description: ['']
     });
   }
 
   saveTask(): void {
     this.formSubmitted = true;
     if (this.addTaskForm.valid) {
-      const request: NewTaskInterface = {
+      const newTask: NewTaskInterface = {
         ...this.addTaskForm.value
       };
-      console.log({ request });
+      console.log({ newTask });
 
-      this.dialogRef.close(this.addTaskForm.value);
+      this.apiTaskService.postTask(newTask).subscribe({
+        next: (response) => {
+          const currentTasksData = this.sharedService.tasksDataSubject.getValue();
+          const updatedTasksData = [...currentTasksData, response];
+          this.sharedService.updateTasksData(updatedTasksData);
+          this.dialogRef.close(this.addTaskForm.value);
+        },
+        error: (error) => {
+          console.error('Error:', error);
+        }
+      });
     }
   }
 

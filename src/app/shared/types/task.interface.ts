@@ -1,10 +1,9 @@
 export interface TaskInterface {
   _id: string;
-  name: string;
+  userId: string;
+  title: string;
   description: string;
   completed: boolean;
-  createdAt: string;
-  updatedAt: string;
 }
 
-export type NewTaskInterface = Omit<TaskInterface, '_id' | 'createdAt' | 'updatedAt'>;
+export type NewTaskInterface = Omit<TaskInterface, 'id'>;

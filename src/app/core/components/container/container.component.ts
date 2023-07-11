@@ -19,7 +19,7 @@ export class ContainerComponent {
     dialogConfig.panelClass = 'dialog-responsive';
     dialogConfig.disableClose = true;
     dialogConfig.data = {
-      title: 'New Class'
+      title: 'Nueva tarea'
     };
     const dialogRef = this.dialog.open(AddTaskModalComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((data) => {

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TaskInterface } from 'src/app/shared/types/task.interface';
 
 @Component({
   selector: 'app-pending-tasks',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./pending-tasks.component.scss']
 })
 export class PendingTasksComponent {
+  @Input() pendingTasks!: TaskInterface[];
 
 }

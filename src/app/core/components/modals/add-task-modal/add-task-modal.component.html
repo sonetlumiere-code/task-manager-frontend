@@ -3,27 +3,27 @@
 <app-dialog-modal>
   <div class="app-dialog-content">
     <form [formGroup]="addTaskForm" id="myForm" (ngSubmit)="saveTask()">
-      <mat-form-field floatLabel="auto" appearance="outline" color="primary">
+      <mat-form-field floatLabel="auto" appearance="outline" color="accent">
         <mat-label>Tarea</mat-label>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <input matInput type="text" formControlName="name">
+        <input matInput type="text" formControlName="title">
         <mat-error
-          *ngIf="addTaskForm.controls['name'].invalid
-          && (addTaskForm.controls['name'].dirty
-          || addTaskForm.controls['name'].touched)
+          *ngIf="addTaskForm.controls['title'].invalid
+          && (addTaskForm.controls['title'].dirty
+          || addTaskForm.controls['title'].touched)
           || addTaskForm.invalid && formSubmitted">
           Ingresa una tarea. 
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field floatLabel="auto" appearance="outline" color="primary">
+      <mat-form-field floatLabel="auto" appearance="outline" color="accent">
         <mat-label>Descripción</mat-label>
         <textarea matInput type="text" formControlName="description"></textarea>
       </mat-form-field>
     </form>
   </div>
   <div class="app-dialog-actions">
-    <button type="submit" form="myForm" mat-raised-button color="primary" [disabled]="addTaskForm.invalid && formSubmitted">
+    <button type="submit" form="myForm" mat-raised-button color="warn" [disabled]="addTaskForm.invalid && formSubmitted">
       Crear
     </button>
     <button type="button" mat-stroked-button (click)="close()">Cerrar</button>

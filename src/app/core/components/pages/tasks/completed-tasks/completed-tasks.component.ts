@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TaskInterface } from 'src/app/shared/types/task.interface';
 
 @Component({
   selector: 'app-completed-tasks',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./completed-tasks.component.scss']
 })
 export class CompletedTasksComponent {
-
+  @Input() completedTasks!: TaskInterface[];
 }
