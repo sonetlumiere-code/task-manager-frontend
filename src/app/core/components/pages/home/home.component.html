@@ -1,1 +1,10 @@
-<p>home works!</p>
+<h1 *ngIf="pendingTasks.length !== 0; else noTasksData">
+  Buen día! Estas son tus tareas pendientes
+</h1>
+<ng-template #noTasksData>
+  <h1>No hay tareas pendientes</h1>
+</ng-template>
+
+<app-pending-tasks
+  [pendingTasks]="pendingTasks"
+></app-pending-tasks>
