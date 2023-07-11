@@ -10,7 +10,6 @@ import { SpinnerService } from '../shared/services/spinner/spinner.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'task-manager-app';
   spinnerState$!: Observable<boolean>;
 
   constructor(
