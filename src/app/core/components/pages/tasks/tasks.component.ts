@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APITaskService } from 'src/app/core/services/api-task.service';
-import { SharedService } from 'src/app/shared/services/shared.service';
+import { SharedService } from 'src/app/shared/services/shared/shared.service';
 import { TaskInterface } from 'src/app/shared/types/task.interface';
 
 @Component({

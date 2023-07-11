@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { APITaskService } from 'src/app/core/services/api-task.service';
-import { SharedService } from 'src/app/shared/services/shared.service';
+import { SharedService } from 'src/app/shared/services/shared/shared.service';
 import { NewTaskInterface } from 'src/app/shared/types/task.interface';
 
 interface DialogData {
@@ -44,13 +44,13 @@ export class AddTaskModalComponent implements OnInit {
         ...this.addTaskForm.value
       };
       console.log({ newTask });
+      this.dialogRef.close(this.addTaskForm.value);
 
       this.apiTaskService.postTask(newTask).subscribe({
         next: (response) => {
           const currentTasksData = this.sharedService.tasksDataSubject.getValue();
           const updatedTasksData = [...currentTasksData, response];
           this.sharedService.updateTasksData(updatedTasksData);
-          this.dialogRef.close(this.addTaskForm.value);
         },
         error: (error) => {
           console.error('Error:', error);

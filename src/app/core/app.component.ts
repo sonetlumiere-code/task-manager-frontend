@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { APITaskService } from './services/api-task.service';
-import { SharedService } from '../shared/services/shared.service';
+import { SharedService } from '../shared/services/shared/shared.service';
+import { SpinnerService } from '../shared/services/spinner/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,17 @@ import { SharedService } from '../shared/services/shared.service';
 })
 export class AppComponent implements OnInit {
   title = 'task-manager-app';
+  spinnerState$!: Observable<boolean>;
 
   constructor(
     private apiTaskService: APITaskService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private spinnerService: SpinnerService,
   ) { }
 
   ngOnInit(): void {
     this.getTasks();
+    this.spinnerState$ = this.spinnerService.spinnerState$;
   }
 
   getTasks() {
