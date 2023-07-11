@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { APITaskService } from 'src/app/core/services/api-task.service';
 import { SharedService } from 'src/app/shared/services/shared/shared.service';
 import { NewTaskInterface } from 'src/app/shared/types/task.interface';
@@ -23,6 +24,7 @@ export class AddTaskModalComponent implements OnInit {
     private apiTaskService: APITaskService,
     private sharedService: SharedService,
     private dialogRef: MatDialogRef<AddTaskModalComponent>,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
 
@@ -48,6 +50,7 @@ export class AddTaskModalComponent implements OnInit {
 
       this.apiTaskService.postTask(newTask).subscribe({
         next: (response) => {
+          this.snackBar.open('Tarea creada con éxito', '', { duration: 4000 });
           const currentTasksData = this.sharedService.tasksDataSubject.getValue();
           const updatedTasksData = [...currentTasksData, response];
           this.sharedService.updateTasksData(updatedTasksData);
