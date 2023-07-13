@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { APITaskService } from 'src/app/core/services/api-task.service';
 import { SharedService } from 'src/app/shared/services/shared/shared.service';
-import { NewTaskInterface } from 'src/app/shared/types/task.interface';
+import { NewTaskInterface, TaskInterface } from 'src/app/shared/types/task.interface';
 
 interface DialogData {
   title: string;
@@ -49,7 +49,7 @@ export class AddTaskModalComponent implements OnInit {
       this.dialogRef.close(this.addTaskForm.value);
 
       this.apiTaskService.postTask(newTask).subscribe({
-        next: (response) => {
+        next: (response: TaskInterface) => {
           this.snackBar.open('Tarea creada con éxito', '', { duration: 4000 });
           const currentTasksData = this.sharedService.tasksDataSubject.getValue();
           const updatedTasksData = [...currentTasksData, response];

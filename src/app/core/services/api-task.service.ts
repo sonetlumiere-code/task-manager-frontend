@@ -13,34 +13,30 @@ export class APITaskService {
     private http: HttpClient
   ) { }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getTasks(): Observable<any> {
+  getTasks(): Observable<TaskInterface[]> {
     const url = `${this.apiURL}`;
-    return this.http.get(url);
+    return this.http.get<TaskInterface[]>(url);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  postTask(taskData: NewTaskInterface): Observable<any> {
+  postTask(taskData: NewTaskInterface): Observable<TaskInterface> {
     const url = `${this.apiURL}`;
     const body = {
       ...taskData
     };
-    return this.http.post(url, body);
+    return this.http.post<TaskInterface>(url, body);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  updateTask(taskData: TaskInterface): Observable<any> {
+  updateTask(taskData: TaskInterface): Observable<TaskInterface> {
     const url = `${this.apiURL}/${taskData._id}`;
     const body = {
       ...taskData
     };
-    return this.http.put(url, body);
+    return this.http.put<TaskInterface>(url, body);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  deleteTask(taskData: TaskInterface): Observable<any> {
+  deleteTask(taskData: TaskInterface): Observable<TaskInterface> {
     const url = `${this.apiURL}/${taskData._id}`;
-    return this.http.delete(url);
+    return this.http.delete<TaskInterface>(url);
   }
 
 }
